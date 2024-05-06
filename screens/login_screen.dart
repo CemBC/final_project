@@ -26,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final bool userExists = await _checkUserExists(username, password);
     if (userExists) {
       final user = User(username: username, password: password);
-      print(user.getMoney());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User Logged in successfully')),
       );

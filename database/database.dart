@@ -51,6 +51,8 @@
       return List.generate(maps.length, (index) => User.fromJson(maps[index]));
     }
 
+
+
     Future<bool> isExist(String username, String password) async {
       final db = await _databaseService.database;
       final List<Map<String, dynamic>> result = await db.query('user', where: 'username = ? AND password = ?',

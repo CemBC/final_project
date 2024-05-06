@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-
+import 'package:final_project/final_project/screens/asset_screen.dart';
 import '../models/user_model.dart';
 import 'login_screen.dart';
 class MainScreen extends StatefulWidget{
@@ -14,10 +14,21 @@ class _MainScreenState extends State<MainScreen> {
 
   User? user;
 
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: user != null ? Text("Account: ${user!.getName()}") : null, //!!! assetden profil fotoğrafı eklenecek
+        title: Row(
+          children: [
+            if(user != null)
+              CircleAvatar(
+              backgroundImage: AssetImage("assets/images/profile.png"),
+              radius: 25,
+            ),
+            SizedBox(width: 30,),
+            Text(user != null ? "${user!.getName()}" : ""),
+          ],
+        )
       ),
       drawer: Drawer(
         child: Column(
@@ -48,14 +59,15 @@ class _MainScreenState extends State<MainScreen> {
                     child: const Text("Login Screen")
                 )
             ),
-            ElevatedButton(
+              ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Placeholder())
-                  );
-                },
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AssetScreen(user: user))
+                    );
+
+                  },
                 child: Container(
                     child: const Text("My Assets")))
           ],
