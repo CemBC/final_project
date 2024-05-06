@@ -12,7 +12,6 @@ class AssetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Asset Screen"),
         automaticallyImplyLeading: true,
       ),
       body: Center(
@@ -20,24 +19,24 @@ class AssetScreen extends StatelessWidget {
             ? Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Your Assets:"),
+            Text('Your Assets:'),
             SizedBox(height: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: user!.getMoney()!.entries.map((entry) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: EdgeInsets.all(5),
                   child: Container(
-                    padding: EdgeInsets.all(8),
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.blue,
                         width: 1,
                       ),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
-                      "${entry.key}: ${entry.value}",
+                      '${entry.key}: ${entry.value}',
                       style: TextStyle(fontSize: 16),
                     ),
                   ),

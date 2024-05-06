@@ -12,7 +12,7 @@ class User{
     "JPY": 0,
     "GBP": 0,
     "AUD": 0,
-    "TRY": 0,
+    "TRY": 100,
   };
 
 

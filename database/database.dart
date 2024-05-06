@@ -1,4 +1,5 @@
   import 'dart:async';
+import 'dart:convert';
   import 'package:path/path.dart';
   import 'package:final_project/final_project/models/user_model.dart';
   import 'package:sqflite/sqflite.dart';
@@ -30,7 +31,7 @@
 
 
     Future<void> _onCreate(Database db, int version) async {
-      await db.execute("CREATE TABLE user (username TEXT PRIMARY KEY , password TEXT , money TEXT DEFAULT '{\"USD\": 0, \"EUR\": 0, \"JPY\": 0, \"GBP\": 0, \"AUD\": 0, \"TRY\": 0}' )"
+      await db.execute("CREATE TABLE user (username TEXT PRIMARY KEY , password TEXT , money TEXT DEFAULT '{\"USD\": 0, \"EUR\": 0, \"JPY\": 0, \"GBP\": 0, \"AUD\": 0, \"TRY\": 100}' )"
       );
     }
 
@@ -58,6 +59,16 @@
       final List<Map<String, dynamic>> result = await db.query('user', where: 'username = ? AND password = ?',
           whereArgs: [username, password]);
       return result.isNotEmpty;
+    }
+
+    Future<void> updateMoney(String username, Map<String, int> money) async {
+      final db = await _databaseService.database;
+      await db.update(
+        'user',
+        {'money': json.encode(money)},
+        where: 'username = ?',
+        whereArgs: [username],
+      );
     }
 
   }
