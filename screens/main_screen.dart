@@ -14,7 +14,6 @@ class _MainScreenState extends State<MainScreen> {
 
   User? user;
 
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -59,24 +58,24 @@ class _MainScreenState extends State<MainScreen> {
                     child: const Text("Login Screen")
                 )
             ),
-              ElevatedButton(
+            ElevatedButton(
                 onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AssetScreen(user: user))
-                    );
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AssetScreen(user: user))
+                  );
 
-                  },
+                },
                 child: Container(
                     child: const Text("My Assets")))
           ],
         ),
-
-
       ),
     );
   }
 }
+
+//There will be floating action button which will add 100 try at each press
 
 
