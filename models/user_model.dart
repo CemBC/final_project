@@ -31,4 +31,11 @@ class User{
     "money": money,
   };
 
+  String getName() {
+    return username;
+  }
+
+  Map<String, int>? getMoney() {
+    return money;
+  }
 }

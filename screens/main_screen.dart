@@ -17,6 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: user != null ? Text("Account: ${user!.getName()}") : null, //!!! assetden profil fotoğrafı eklenecek
       ),
       drawer: Drawer(
         child: Column(
