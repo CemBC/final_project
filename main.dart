@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:final_project/final_project/screens/login_screen.dart';
 void main() {
-  runApp(LoginScreen());
+  runApp(MaterialApp(
+    home: LoginScreen()
+  ));
 }

@@ -28,14 +28,14 @@
 
 
     Future<void> _onCreate(Database db, int version) async {
-      await db.execute("CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT , username TEXT , password TEXT)"
+      await db.execute("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT , username TEXT , password TEXT)"
       );
     }
 
 
     Future<int> createUser(User user) async {
       final Database db = await _initDatabase();
-      return db.insert('users' , user.toJson(),conflictAlgorithm: ConflictAlgorithm.replace);
+      return db.insert('user' , user.toJson(),conflictAlgorithm: ConflictAlgorithm.ignore);
     }
 
     Future<List<User>> users() async {

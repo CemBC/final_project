@@ -11,21 +11,23 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>{
+
+class _LoginScreenState extends State<LoginScreen> {
   final DatabaseService _databaseService = DatabaseService();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  Future<bool> _checkUserExists(BuildContext context , username, String password) async {
-    final Future<bool> exist = _databaseService.isExist(username, password);
-    if(await exist) {
-      return true;
-    }else{
-      return false;
-    }
+  Future<bool> _checkUserExists(String username, String password) async {
+    final bool exist = await _databaseService.isExist(username, password);
+    return exist;
   }
-  Future<void> _login(BuildContext context, String username, String password) async {
-    final bool userExists = await _checkUserExists(context ,username, password);
-    if (userExists) {
 
+  Future<void> _login(String username, String password) async {
+    final bool userExists = await _checkUserExists(username, password);
+    if (userExists) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User Logged in successfully')),
+      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Wrong username or password')),
@@ -33,27 +35,23 @@ class _LoginScreenState extends State<LoginScreen>{
     }
   }
 
-  Future<void> _register(BuildContext context, String username, String password) async {
-
-    final userExists = await _checkUserExists(context , username, password);
+  Future<void> _register(String username, String password) async {
+    final userExists = await _checkUserExists(username, password);
     if (userExists) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You already signed up')),
       );
     } else {
-      final user = User(username: username , password: password);
-      _databaseService.createUser(user);
+      final user = User(username: username, password: password);
+      await _databaseService.createUser(user);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User signed up successfully')),
       );
     }
   }
 
-
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController _usernameController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Login / Sign up'),
@@ -80,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen>{
                   onPressed: () {
                     final username = _usernameController.text;
                     final password = _passwordController.text;
-                    _login(context, username, password);
+                    _login(username, password);
                   },
                   child: Text('Login'),
                 ),
@@ -88,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen>{
                   onPressed: () {
                     final username = _usernameController.text;
                     final password = _passwordController.text;
-                    _register(context, username, password);
+                    _register(username, password);
                   },
                   child: Text('Sign up'),
                 ),
