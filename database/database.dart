@@ -27,15 +27,22 @@
     }
 
 
+
+
     Future<void> _onCreate(Database db, int version) async {
-      await db.execute("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT , username TEXT , password TEXT)"
+      await db.execute("CREATE TABLE user (username TEXT PRIMARY KEY , password TEXT , money TEXT DEFAULT '{\"USD\": 0, \"EUR\": 0, \"JPY\": 0, \"GBP\": 0, \"AUD\": 0, \"TRY\": 0}' )"
       );
     }
 
 
     Future<int> createUser(User user) async {
       final Database db = await _initDatabase();
-      return db.insert('user' , user.toJson(),conflictAlgorithm: ConflictAlgorithm.ignore);
+      final Map<String, dynamic> userData = {
+        'username': user.username,
+        'password': user.password,
+        'money': user.money,
+      };
+      return db.insert('user', userData, conflictAlgorithm: ConflictAlgorithm.ignore);
     }
 
     Future<List<User>> users() async {

@@ -5,8 +5,8 @@ import '../models/user_model.dart';
 
 
 class LoginScreen extends StatefulWidget {
-
-  const LoginScreen({super.key});
+  final Function(User) onLogin;
+  const LoginScreen({required this.onLogin});
 
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -25,9 +25,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login(String username, String password) async {
     final bool userExists = await _checkUserExists(username, password);
     if (userExists) {
+      final user = User(username: username, password: password);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User Logged in successfully')),
       );
+      widget.onLogin(user);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Wrong username or password')),
@@ -38,15 +40,18 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _register(String username, String password) async {
     final userExists = await _checkUserExists(username, password);
     if (userExists) {
+      final user = User(username: username, password: password);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You already signed up')),
       );
+      widget.onLogin(user);
     } else {
       final user = User(username: username, password: password);
       await _databaseService.createUser(user);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User signed up successfully')),
       );
+      widget.onLogin(user);
     }
   }
 
