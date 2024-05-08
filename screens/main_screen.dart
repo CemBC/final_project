@@ -1,3 +1,4 @@
+import 'package:final_project/final_project/database/database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_project/final_project/screens/asset_screen.dart';
@@ -14,6 +15,18 @@ class _MainScreenState extends State<MainScreen> {
 
   User? user;
 
+  void _increaseTRY(){
+    if(user != null) {
+      setState(() {
+        user!.increaseMoney("TRY", 100);
+      });
+    }
+    _updateUserDatabase();
+  }
+
+  void _updateUserDatabase() async {
+    await DatabaseService().updateUser(user!);
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -72,6 +85,12 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
       ),
+        floatingActionButton:
+          FloatingActionButton(
+
+            onPressed: _increaseTRY,
+            child: Icon(Icons.add),
+          )
     );
   }
 }

@@ -61,6 +61,18 @@
       return result.isNotEmpty;
     }
 
+    Future<void> updateUser(User user) async {
+      final db = await database;
+      await db.update(
+        'user',
+        {
+          'money': jsonEncode(user.money),
+        },
+        where: 'username = ?',
+        whereArgs: [user.username],
+      );
+    }
+
     
 
   }
