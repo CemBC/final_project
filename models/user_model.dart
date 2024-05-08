@@ -38,4 +38,16 @@ class User{
   Map<String, int>? getMoney() {
     return money;
   }
+
+  void increaseMoney(String currency, int amount) {
+    if (money!.containsKey(currency)) {
+      money![currency] = (money![currency] ?? 0) + amount;
+    }
+  }
+
+  void decreaseMoney(String currency, int amount) {
+    if (money!.containsKey(currency)) {
+      money![currency] = (money![currency] ?? 0) - amount;
+    }
+  }
 }

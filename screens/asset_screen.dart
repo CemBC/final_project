@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:final_project/final_project/models/user_model.dart';
 
-import '../database/database.dart';
 class AssetScreen extends StatelessWidget {
 
   User ?user;

@@ -1,5 +1,5 @@
   import 'dart:async';
-import 'dart:convert';
+  import 'dart:convert';
   import 'package:path/path.dart';
   import 'package:final_project/final_project/models/user_model.dart';
   import 'package:sqflite/sqflite.dart';
@@ -61,14 +61,6 @@ import 'dart:convert';
       return result.isNotEmpty;
     }
 
-    Future<void> updateMoney(String username, Map<String, int> money) async {
-      final db = await _databaseService.database;
-      await db.update(
-        'user',
-        {'money': json.encode(money)},
-        where: 'username = ?',
-        whereArgs: [username],
-      );
-    }
+    
 
   }
