@@ -1,7 +1,6 @@
 import 'package:final_project/final_project/screens/main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/final_project/screens/login_screen.dart';
-void main() {
+ void main() {
   runApp(MaterialApp(
     home: MainScreen()
   ));
@@ -43,5 +42,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
- */
+} */

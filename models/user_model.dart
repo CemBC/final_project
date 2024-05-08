@@ -3,9 +3,9 @@ class User{
   final String username;
   final String password;
 
-  final Map<String, int>? money;
+  final Map<String, dynamic>? money;
 
-  User({required this.username , required this.password ,  Map<String, int>? money,
+  User({required this.username , required this.password ,  Map<String, dynamic>? money,
   }) : money = money ?? {
     "USD": 0,
     "EUR": 0,
@@ -35,7 +35,7 @@ class User{
     return username;
   }
 
-  Map<String, int>? getMoney() {
+  Map<String, dynamic>? getMoney() {
     return money;
   }
 

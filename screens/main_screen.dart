@@ -94,6 +94,5 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-//There will be floating action button which will add 100 try at each press
 
 

@@ -25,11 +25,18 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login(String username, String password) async {
     final bool userExists = await _checkUserExists(username, password);
     if (userExists) {
-      final user = User(username: username, password: password);
+      final User? user = await _databaseService.getUser(username, password);
+
+      if(user!.getMoney() == null) {
+        print("Money is null");
+      }else{
+        print("Money is not null ${user!.getMoney()}");
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User Logged in successfully')),
       );
-      widget.onLogin(user);
+      widget.onLogin(user!);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Wrong username or password')),
@@ -40,14 +47,28 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _register(String username, String password) async {
     final userExists = await _checkUserExists(username, password);
     if (userExists) {
-      final user = User(username: username, password: password);
+      final User? user = await _databaseService.getUser(username, password);
+
+      if(user!.getMoney() == null) {
+        print("Money is null");
+      }else{
+        print("Money is not null ${user!.getMoney()}");
+      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You already signed up')),
       );
-      widget.onLogin(user);
+
+      widget.onLogin(user!);
     } else {
       final user = User(username: username, password: password);
       await _databaseService.createUser(user);
+
+      if(user!.getMoney() == null) {
+        print("Money is null");
+      }else{
+        print("Money is not null ${user!.getMoney()}");
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User signed up successfully')),
       );

@@ -46,13 +46,32 @@
       return db.insert('user', userData, conflictAlgorithm: ConflictAlgorithm.ignore);
     }
 
-    Future<List<User>> users() async {  //for controls
+    Future<List<User>> users() async {
       final db = await _databaseService.database;
       final List<Map<String, dynamic>> maps = await db.query('user');
       return List.generate(maps.length, (index) => User.fromJson(maps[index]));
     }
 
-    Future<Map<String, int>?> getMoney(String username) async { //for controls
+    Future<User?> getUser(String username , String password) async {
+      final db = await database;
+      final List<Map<String, dynamic>> maps = await db.query('user', where: 'username = ? AND password = ?', whereArgs: [username , password]);
+
+      if (maps.isNotEmpty) {
+        return User.fromJson(maps.first);
+      }
+      print("GetUser returnes null");
+      return null;
+    }
+
+
+    Future<bool> isExist(String username, String password) async {
+      final db = await _databaseService.database;
+      final List<Map<String, dynamic>> result = await db.query('user', where: 'username = ? AND password = ?',
+          whereArgs: [username, password]);
+      return result.isNotEmpty;
+    }
+
+    Future<Map<String, dynamic>?> getMoney(String username) async { //for now its for controls
       final db = await database;
       final List<Map<String, dynamic>> maps = await db.query('user', where: 'username = ?', whereArgs: [username]);
 
@@ -64,16 +83,7 @@
       }
     }
 
-
-
-    Future<bool> isExist(String username, String password) async {
-      final db = await _databaseService.database;
-      final List<Map<String, dynamic>> result = await db.query('user', where: 'username = ? AND password = ?',
-          whereArgs: [username, password]);
-      return result.isNotEmpty;
-    }
-
-    Future<void> updateUser(User user) async {  //still does not work!!
+    Future<void> updateUser(User user) async {
       final db = await _databaseService.database;
       await db.update(
         'user',
