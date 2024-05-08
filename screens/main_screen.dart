@@ -19,9 +19,9 @@ class _MainScreenState extends State<MainScreen> {
     if(user != null) {
       setState(() {
         user!.increaseMoney("TRY", 100);
+        _updateUserDatabase();
       });
     }
-    _updateUserDatabase();
   }
 
   void _updateUserDatabase() async {
@@ -87,7 +87,6 @@ class _MainScreenState extends State<MainScreen> {
       ),
         floatingActionButton:
           FloatingActionButton(
-
             onPressed: _increaseTRY,
             child: Icon(Icons.add),
           )

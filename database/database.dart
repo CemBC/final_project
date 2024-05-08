@@ -46,10 +46,22 @@
       return db.insert('user', userData, conflictAlgorithm: ConflictAlgorithm.ignore);
     }
 
-    Future<List<User>> users() async {
+    Future<List<User>> users() async {  //for controls
       final db = await _databaseService.database;
       final List<Map<String, dynamic>> maps = await db.query('user');
       return List.generate(maps.length, (index) => User.fromJson(maps[index]));
+    }
+
+    Future<Map<String, int>?> getMoney(String username) async { //for controls
+      final db = await database;
+      final List<Map<String, dynamic>> maps = await db.query('user', where: 'username = ?', whereArgs: [username]);
+
+      if (maps.isNotEmpty) {
+        final user = User.fromJson(maps.first);
+        return user.money;
+      } else {
+        return null;
+      }
     }
 
 
@@ -61,15 +73,15 @@
       return result.isNotEmpty;
     }
 
-    Future<void> updateUser(User user) async {
-      final db = await database;
+    Future<void> updateUser(User user) async {  //still does not work!!
+      final db = await _databaseService.database;
       await db.update(
         'user',
         {
           'money': jsonEncode(user.money),
         },
-        where: 'username = ?',
-        whereArgs: [user.username],
+        where: 'username = ? AND password = ?',
+        whereArgs: [user.username , user.password],
       );
     }
 
