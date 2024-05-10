@@ -1,10 +1,13 @@
+import 'package:final_project/final_project/screens/values_list_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 import '../bloc/values_bloc.dart';
+import '../models/user_model.dart';
 
 class ShowValuesWidget extends StatefulWidget {
-  const ShowValuesWidget({super.key});
+  User? user;
+  ShowValuesWidget({required this.user});
 
   State<ShowValuesWidget> createState() => _ShowValuesWidgetState();
 }
@@ -21,7 +24,15 @@ class _ShowValuesWidgetState extends State<ShowValuesWidget> {
         builder: (context, state) {
           return switch (state) {
             LoadingValues() => const Center(child: CircularProgressIndicator()),
-            ValuesLoaded() => ListView.builder(
+            ValuesLoaded() => ValuesListViewer(values: state.values , user: widget.user),
+            _ => const Placeholder(),
+          };
+        });
+  }
+}
+
+/*
+ListView.builder(
               itemCount: state.values.length,
               prototypeItem: ListTile(
                 title: Text(state.values.first.name),
@@ -34,8 +45,5 @@ class _ShowValuesWidgetState extends State<ShowValuesWidget> {
                 );
               },
             ),
-            _ => const Placeholder(),
-          };
-        });
-  }
-}
+
+ */

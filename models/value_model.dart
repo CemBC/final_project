@@ -4,12 +4,16 @@ class Value{
 
   double value;
 
-  Value({required this.name , required this.value});
+  String image;
+
+
+  Value({required this.name , required this.value , required this.image });
 
   factory Value.fromJson(Map<String , dynamic> json) {
     return Value(
       name: json["name"],
       value: json["value"],
+      image: json["image"],
     );
   }
 

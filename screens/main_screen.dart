@@ -91,7 +91,7 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ),
-        body: ShowValuesWidget(),
+        body: ShowValuesWidget(user: user),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _increaseTRY();
