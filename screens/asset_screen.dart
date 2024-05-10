@@ -35,7 +35,7 @@ class AssetScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
-                      '${entry.key}: ${entry.value}',
+                      '${entry.key}: ${entry.value.toStringAsFixed(2)}',
                       style: TextStyle(fontSize: 16),
                     ),
                   ),

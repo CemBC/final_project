@@ -1,6 +1,6 @@
 import 'package:final_project/final_project/screens/main_screen.dart';
 import 'package:flutter/material.dart';
- void main() {
+  void main() {
   runApp(MaterialApp(
     home: Scaffold(
      body: MainScreen()

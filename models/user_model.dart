@@ -7,12 +7,12 @@ class User{
 
   User({required this.username , required this.password ,  Map<String, dynamic>? money,
   }) : money = money ?? {
-    "USD": 0,
-    "EUR": 0,
-    "JPY": 0,
-    "GBP": 0,
-    "AUD": 0,
-    "TRY": 100,
+    "USD": 0.0,
+    "EUR": 0.0,
+    "JPY": 0.0,
+    "GBP": 0.0,
+    "AUD": 0.0,
+    "TRY": 100.0,
   };
 
 
@@ -39,15 +39,19 @@ class User{
     return money;
   }
 
-  void increaseMoney(String currency, int amount) {
+  void increaseMoney(String currency, double amount) {
     if (money!.containsKey(currency)) {
       money![currency] = (money![currency] ?? 0) + amount;
     }
   }
 
-  void decreaseMoney(String currency, int amount) {
+  void decreaseMoney(String currency, double amount) {
     if (money!.containsKey(currency)) {
       money![currency] = (money![currency] ?? 0) - amount;
     }
+  }
+
+  double getCurrencyValue(String currency) {
+    return money?[currency] ?? 0.0;
   }
 }

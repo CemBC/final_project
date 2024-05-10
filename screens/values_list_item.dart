@@ -1,3 +1,4 @@
+import 'package:final_project/final_project/screens/buy_sell_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/user_model.dart';
 import '../models/value_model.dart';
@@ -42,7 +43,7 @@ class ValuesListItem extends StatelessWidget {
                     Text(value.name,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18)),
-                    Text("1 ${value.name} = ${value.value} TRY",
+                    Text("1 ${value.short} = ${value.value} TRY",
                         style: TextStyle(
                             fontSize: 18,
                             color: Colors.red,
@@ -67,7 +68,12 @@ class ValuesListItem extends StatelessWidget {
                   size: 40,
                 ),
                 onTap: () {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BuySellScreen(user: user, value: value), //Buy_Sell_Screen(user: user , value : value )
+                    ),
+                  );
 
                 },
               )
