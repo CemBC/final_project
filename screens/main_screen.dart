@@ -87,9 +87,18 @@ class _MainScreenState extends State<MainScreen> {
       ),
         floatingActionButton:
           FloatingActionButton(
-            onPressed: _increaseTRY,
+            onPressed: () {
+              _increaseTRY();
+              if (user != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('100 TRY added tou your account')),);
+              }else{
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('You must first login to your account')),);
+              }
+            },
             child: Icon(Icons.add),
-          )
+          ),
     );
   }
 }

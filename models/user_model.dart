@@ -21,7 +21,7 @@ class User{
     username: json["username"],
     password: json["password"],
     money: json["money"] != null
-        ? Map<String, int>.from(jsonDecode(json["money"]))
+        ? Map<String, dynamic>.from(jsonDecode(json["money"]))
         : null,
   );
 
