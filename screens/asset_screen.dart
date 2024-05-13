@@ -3,14 +3,16 @@ import 'package:final_project/final_project/models/user_model.dart';
 
 class AssetScreen extends StatelessWidget {
 
+  final ThemeData themeData;
   User ?user;
 
-
-  AssetScreen({required this.user });
+  AssetScreen({required this.user , required this.themeData });
 
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         automaticallyImplyLeading: true,
       ),
       body: Center(
@@ -44,8 +46,11 @@ class AssetScreen extends StatelessWidget {
             ),
           ],
         )
-            : Text("You must first login"),
+            : Text("You must first login" , style: TextStyle(
+          color: Colors.redAccent
+        )),
       ),
+      backgroundColor: themeData.backgroundColor,
     );
   }
 }

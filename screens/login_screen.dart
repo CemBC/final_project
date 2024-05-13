@@ -5,8 +5,9 @@ import '../models/user_model.dart';
 
 
 class LoginScreen extends StatefulWidget {
+  final ThemeData themeData;
   final Function(User) onLogin;
-  const LoginScreen({required this.onLogin});
+  const LoginScreen({required this.onLogin , required this.themeData});
 
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -80,6 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: Text('Login / Sign up'),
       ),
       body: Padding(
@@ -121,6 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+      backgroundColor: widget.themeData.backgroundColor,
     );
   }
 }

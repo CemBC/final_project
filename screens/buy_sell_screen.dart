@@ -56,7 +56,9 @@ class BuySellScreen extends StatelessWidget {
             automaticallyImplyLeading: true,
           ),
         body: Center(
-          child: Text("You must login first"),
+          child: Text("You must first login" , style: TextStyle(
+            color: Colors.redAccent
+          ),),
         )
       );
     }else {

@@ -30,20 +30,3 @@ class _ShowValuesWidgetState extends State<ShowValuesWidget> {
         });
   }
 }
-
-/*
-ListView.builder(
-              itemCount: state.values.length,
-              prototypeItem: ListTile(
-                title: Text(state.values.first.name),
-                subtitle: Text("${state.values.first.value}"),
-              ),
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(state.values[index].name),
-                  subtitle: Text("${state.values[index].value}"),
-                );
-              },
-            ),
-
- */
