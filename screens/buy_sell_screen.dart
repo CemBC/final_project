@@ -88,76 +88,92 @@ class BuySellScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: Column(
-          children: [
-            Container(
-              height: 300,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                gradient: const LinearGradient(
-                  colors: [Colors.blueAccent, Colors.blueGrey],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                boxShadow: [
-                  BoxShadow(color: Colors.black, spreadRadius: 1, blurRadius: 3),
-                ],
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.black,
-                        backgroundImage: AssetImage("assets/images/${value.image}"),
-                        radius: 75,
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(value.name,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18)),
-                            Text("1 ${value.name} = ${value.value} TRY",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ),
-                    ],
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(height: 20,),
+              Container(
+                height: 300,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: const LinearGradient(
+                    colors: [Colors.blueAccent, Colors.blueGrey],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                ],
+                  boxShadow: [
+                    BoxShadow(color: Colors.black, spreadRadius: 1, blurRadius: 3),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.black,
+                          backgroundImage: AssetImage("assets/images/${value.image}"),
+                          radius: 75,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                         Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(value.name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold, fontSize: 18)),
+                              Text("1 ${value.short} = ${value.value} TRY",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Text("You have "
-                  "${(user!.getCurrencyValue(value.short)).toStringAsFixed(2)}"
-                  " ${value.short}"),
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                OutlinedButton(
-                  onPressed: () => _buy(context),
-                  child: Text("Buy ${value.short}"),
+              SizedBox(height: 50),
+              Container(
+                width: 300,
+                height: 40,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.cyanAccent , width: 4) ,
+                  borderRadius: BorderRadius.circular(10),
+
                 ),
-                OutlinedButton(
-                  onPressed: () => _sell(context),
-                  child: Text("Sell ${value.short}"),
+                padding: EdgeInsets.all(5),
+                child: Center(
+                  child: Text("You have "
+                      "${(user!.getCurrencyValue(value.short)).toStringAsFixed(2)}"
+                      " ${value.short}"),
                 ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(height: 100),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FilledButton(
+                      onPressed: () => _buy(context),
+                      child: Text("Buy ${value.short}"),
+                    ),
+                    SizedBox(width: 75,),
+                    FilledButton(
+                      onPressed: () => _sell(context),
+                      child: Text("Sell ${value.short}"),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }

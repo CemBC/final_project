@@ -51,11 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
     if (userExists) {
       final User? user = await _databaseService.getUser(username, password);
 
-      if(user!.getMoney() == null) {
-        print("Money is null");
-      }else{
-        print("Money is not null ${user!.getMoney()}");
-      }
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You already signed up')),
       );
@@ -65,11 +60,6 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = User(username: username, password: password);
       await _databaseService.createUser(user);
 
-      if(user!.getMoney() == null) {
-        print("Money is null");
-      }else{
-        print("Money is not null ${user!.getMoney()}");
-      }
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User signed up successfully')),
@@ -90,14 +80,20 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: 150,
+              height: 150,
+              child: Icon(Icons.login_rounded , size: 150 , color: Colors.cyanAccent)
+            ),
+            SizedBox(height: 50,),
             TextField(
               controller: _usernameController,
-              decoration: InputDecoration(labelText: 'Username'),
+              decoration: InputDecoration(labelText: 'Username' , labelStyle: TextStyle(color: Colors.blueGrey)),
               style: TextStyle(color: Colors.cyan),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(labelText: 'Password' , labelStyle: TextStyle(color: Colors.blueGrey)),
               obscureText: true,
               style: TextStyle(color: Colors.cyan),
             ),
