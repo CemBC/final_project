@@ -1,6 +1,5 @@
 import 'package:final_project/final_project/database/database.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../models/user_model.dart';
 import '../models/value_model.dart';
@@ -53,18 +52,41 @@ class BuySellScreen extends StatelessWidget {
     if(user == null) {
       return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.blueGrey,
             automaticallyImplyLeading: true,
           ),
-        body: Center(
-          child: Text("You must first login" , style: TextStyle(
-            color: Colors.redAccent
-          ),),
+        body: Column(
+          children: [
+            Container(
+                height: 500,
+                width: 500,
+                child: Icon(Icons.lock_person_outlined, size: 300, color: Colors.red )
+            ),
+            Text("You must first login" , style: TextStyle(
+                color: Colors.redAccent,
+                fontWeight: FontWeight.w600,
+                fontSize: 20
+            ) ),
+          ],
         )
       );
     }else {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
           automaticallyImplyLeading: true,
+          title: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage("assets/images/profile.png"),
+                radius: 25,
+              ),
+              SizedBox(width: 30),
+              Text(user != null ? "${user!.getName()}" : "" ,
+                style: TextStyle(color: Colors.white),),
+              SizedBox(width: 10,),
+            ],
+          ),
         ),
         body: Column(
           children: [

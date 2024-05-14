@@ -14,6 +14,7 @@ class MainScreen extends StatefulWidget{
   State<MainScreen> createState() => _MainScreenState();
 }
 
+
 class _MainScreenState extends State<MainScreen> {
 
   User? user;
@@ -27,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  ThemeData _theme = ThemeData.light();
+   ThemeData _theme = ThemeData.light();
 
   void _toggleTheme() {
     setState(() {
@@ -37,6 +38,12 @@ class _MainScreenState extends State<MainScreen> {
   }
 
 
+  void logOut() {
+    setState(() {
+      user = null;
+    });
+
+  }
 
 
   void _updateUserDatabase() async {
@@ -105,7 +112,7 @@ class _MainScreenState extends State<MainScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AssetScreen(user: user , themeData: _theme,),
+                          builder: (context) => AssetScreen(user: user , themeData: _theme),
                         ),
                       );
                     },
@@ -113,6 +120,13 @@ class _MainScreenState extends State<MainScreen> {
                       child: const Text("My Assets"),
                     ),
                   ),
+                  Expanded(
+                    child: SizedBox()
+                  ),
+                  if(!(user == null))
+                    ElevatedButton(onPressed: logOut,
+                        child: Text("Logout")),
+                  SizedBox(height: 10,)
                 ],
               ),
             ),
@@ -129,7 +143,7 @@ class _MainScreenState extends State<MainScreen> {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('You must first log in to your account'),
+                      content: Text('You must first login to your account'),
                     ),
                   );
                 }

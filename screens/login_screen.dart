@@ -5,9 +5,10 @@ import '../models/user_model.dart';
 
 
 class LoginScreen extends StatefulWidget {
+
   final ThemeData themeData;
   final Function(User) onLogin;
-  const LoginScreen({required this.onLogin , required this.themeData});
+  const LoginScreen({required this.onLogin ,required this.themeData});
 
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text('Login / Sign up'),
+        title: Text('Login / Sign up ', style: TextStyle(color: Colors.amberAccent),),
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -92,11 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(labelText: 'Username'),
+              style: TextStyle(color: Colors.cyan),
             ),
             TextField(
               controller: _passwordController,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
+              style: TextStyle(color: Colors.cyan),
             ),
             SizedBox(height: 20),
             Row(
@@ -108,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     final password = _passwordController.text;
                     _login(username, password);
                   },
-                  child: Text('Login'),
+                  child: Text('Login')
                 ),
                 ElevatedButton(
                   onPressed: () {

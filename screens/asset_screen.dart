@@ -10,19 +10,17 @@ class AssetScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         automaticallyImplyLeading: true,
+        title: Text("Your Assets" , style: TextStyle(color: Colors.amberAccent , fontSize: 20 ,
+        fontWeight: FontWeight.bold)),
+        centerTitle: true,
       ),
       body: Center(
         child: user != null
             ? Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Your Assets:'),
-            SizedBox(height: 10),
-            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: user!.getMoney()!.entries.map((entry) {
                 return Padding(
@@ -32,23 +30,32 @@ class AssetScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.blue,
-                        width: 1,
+                        width: 2,
                       ),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
                       '${entry.key}: ${entry.value.toStringAsFixed(2)}',
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16 , color: Colors.redAccent , fontWeight: FontWeight.bold),
                     ),
                   ),
                 );
               }).toList(),
-            ),
-          ],
         )
-            : Text("You must first login" , style: TextStyle(
-          color: Colors.redAccent
-        )),
+            : Column(
+              children: [
+                Container(
+                    height: 500,
+                    width: 500,
+                    child: Icon(Icons.lock_person_outlined, size: 300, color: Colors.red )
+                ),
+                Text("You must first login" , style: TextStyle(
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20
+                        ) ),
+              ],
+            ),
       ),
       backgroundColor: themeData.backgroundColor,
     );
