@@ -13,7 +13,7 @@ class AssetScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         automaticallyImplyLeading: true,
-        title: Text("Your Assets" , style: TextStyle(color: Colors.amberAccent , fontSize: 20 ,
+        title: Text("Your Assets" , style: TextStyle(color: Color(0xFFffc800) , fontSize: 20 ,
         fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),

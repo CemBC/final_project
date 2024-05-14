@@ -42,7 +42,8 @@ class ValuesListItem extends StatelessWidget {
                   children: [
                     Text(value.name,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18)),
+                            fontWeight: FontWeight.bold, fontSize: 18,
+                        color: Colors.black)),
                     Text("1 ${value.short} = ${value.value} TRY",
                         style: TextStyle(
                             fontSize: 18,

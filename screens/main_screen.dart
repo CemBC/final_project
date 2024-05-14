@@ -71,20 +71,29 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(width: 10,),
                 ],
               ),
-              backgroundColor: Colors.blueGrey,
+              backgroundColor: Color(0xFF44545c),
               actions: [
                 IconButton(
                   icon: Icon(Icons.lightbulb),
                   onPressed: _toggleTheme,
+                  color: Color(0xFFdbc640),
                 ),
               ],
             ),
             drawer: Drawer(
               child: Column(
                 children: [
-                  DrawerHeader(
-                    child: Text("Stock Market"),
-                    decoration: BoxDecoration(color: Colors.blue),
+                  Container(
+                    width: 600,
+                    height: 200,
+                    decoration: BoxDecoration(color: Color(0xFF075678)),
+                    child: Center(
+                      child: DrawerHeader(
+                        child: Text("Cem's Stock Market" , style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: Colors.tealAccent),),
+                      ),
+                    ),
                   ),
                   SizedBox(height: 100),
                   FilledButton(

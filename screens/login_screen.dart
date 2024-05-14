@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text('Login / Sign up ', style: TextStyle(color: Colors.amberAccent),),
+        title: Text('Login / Sign up ', style: TextStyle(color: Color(0xFFffc800)),),
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               width: 150,
               height: 150,
-              child: Icon(Icons.login_rounded , size: 150 , color: Colors.cyanAccent)
+              child: Icon(Icons.login_rounded , size: 150 , color: Color(0xFF11b81c))
             ),
             SizedBox(height: 50,),
             TextField(
