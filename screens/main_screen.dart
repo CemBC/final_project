@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:final_project/final_project/database/database.dart';
 import 'package:final_project/final_project/widgets/values_widgets.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:path/path.dart';
 import '../bloc/values_bloc.dart';
 import '../models/user_model.dart';
 import 'login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget{
 
@@ -19,6 +22,27 @@ class MainScreen extends StatefulWidget{
 class _MainScreenState extends State<MainScreen> {
 
   User? user;
+  ThemeData _theme = ThemeData.light();
+
+  void initState() {
+    super.initState();
+    _loadSavedTheme();
+  }
+
+  Future<void> _loadSavedTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isDarkTheme = prefs.getBool('isDarkTheme') ?? false;
+    setState(() {
+      _theme = ThemeData(
+        brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+      );
+    });
+  }
+
+  Future<void> _saveThemeDataToPrefs(ThemeData themeData) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isDarkTheme', themeData.brightness == Brightness.dark);
+  }
 
   void _increaseTRY(){
     if(user != null) {
@@ -29,14 +53,16 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-   ThemeData _theme = ThemeData.light();
+
 
   void _toggleTheme() {
     setState(() {
-      _theme =
-      _theme == ThemeData.light() ? ThemeData.dark() : ThemeData.light();
+      _theme = (_theme == ThemeData.light()) ? ThemeData.dark() : ThemeData.light();
+      _saveThemeDataToPrefs(_theme);
     });
   }
+
+
 
 
   void logOut() {
