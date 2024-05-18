@@ -31,7 +31,7 @@
 
 
     Future<void> _onCreate(Database db, int version) async {
-      await db.execute("CREATE TABLE user (username TEXT PRIMARY KEY , password TEXT , money TEXT DEFAULT '{\"USD\": 0, \"EUR\": 0, \"JPY\": 0, \"GBP\": 0, \"AUD\": 0, \"TRY\": 100}' )"
+      await db.execute("CREATE TABLE user (username TEXT PRIMARY KEY , password TEXT , money TEXT DEFAULT '{ \"AUD\": 0.0 ,  \"JPY\": 0.0 , \"EUR\": 0.0, \"GBP\": 0.0, \"USD\": 0.0, \"TRY\": 100.0}' )"
       );
     }
 
@@ -59,7 +59,7 @@
       if (maps.isNotEmpty) {
         return User.fromJson(maps.first);
       }
-      print("GetUser returnes null");
+      print("GetUser returns null");
       return null;
     }
 

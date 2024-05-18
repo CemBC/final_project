@@ -7,12 +7,12 @@ class User{
 
   User({required this.username , required this.password ,  Map<String, dynamic>? money,
   }) : money = money ?? {
-    "USD": 0.0,
-    "EUR": 0.0,
-    "JPY": 0.0,
-    "GBP": 0.0,
-    "AUD": 0.0,
-    "TRY": 100.0,
+    "AUD" : 0.0,
+    "JPY" : 0.0,
+    "EUR" : 0.0,
+    "GBP" : 0.0,
+    "USD" : 0.0,
+    "TRY" : 100.0,
   };
 
 

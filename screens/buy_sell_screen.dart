@@ -99,7 +99,7 @@ class BuySellScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   gradient: const LinearGradient(
-                    colors: [Colors.blueAccent, Colors.blueGrey],
+                    colors: [Colors.yellowAccent, Colors.blueGrey],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
