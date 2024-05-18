@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      backgroundColor: widget.themeData.backgroundColor,
+      backgroundColor: widget.themeData.colorScheme.background,
     );
   }
 }

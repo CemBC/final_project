@@ -57,7 +57,7 @@ class AssetScreen extends StatelessWidget {
               ],
             ),
       ),
-      backgroundColor: themeData.backgroundColor,
+      backgroundColor: themeData.colorScheme.background,
     );
   }
 }
