@@ -50,7 +50,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final userExists = await _checkUserExists(username, password);
     if (userExists) {
       final User? user = await _databaseService.getUser(username, password);
-
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('You already signed up')),
       );
@@ -59,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       final user = User(username: username, password: password);
       await _databaseService.createUser(user);
-
+      _databaseService.updateUser(user!);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('User signed up successfully')),
